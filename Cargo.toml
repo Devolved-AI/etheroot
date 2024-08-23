@@ -1,15 +1,20 @@
 [package]
 name = "etheroot"
 version = "0.1.0"
-
-
-
-[package.metadata.docs.rs]
-targets = ["x86_64-unknown-linux-gnu"]
+authors = ["Argochain Team"]
+edition = "2021"
+repository = "https://github.com/psyfercom/etheroot"
 
 [dependencies]
-fp-evm = "2.0.0"
-sp-core = { version = "34.0.0", features = ["rand"]}
-wasm-pack = "0.13.0"
-sp-externalities = "0.29.0"
-serde_json = "1.0.125"
+frame-system = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v1.0.0" }
+pallet-evm = { workspace = true }
+tokio = { version = "1.0", features = ["full"] }
+
+
+[features]
+default = ["std"]
+std = [
+    "frame-system/std",
+    "pallet-evm/std",
+    "tokio/default"
+]
